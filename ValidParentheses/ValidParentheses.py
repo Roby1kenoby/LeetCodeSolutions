@@ -4,53 +4,30 @@ class Solution(object):
         :type s: str
         :rtype: bool
         """
-        # solution with map
-        lastOpen = ''
         m = {
             ')': '(',
             ']': '[',
             '}': '{'
         }
-        c = 0
 
-        for i in s:
-            c +=1
-            if i in ['(','[','{']:
-                lastOpen = i
-            elif i in m and m[i] != lastOpen:
-                print('ko')
-                return
-            elif c == len(s):
-                print('ok')
-            
-        # longer solution
-                
-        # openRound = 0
-        # openSquare = 0
-        # openBraket = 0
-        # lastOpen = ''       
-        # for i in s:
-        #     if i == '(':
-        #         openRound += 1
-        #         lastOpen = i
-        #     elif i == '[':
-        #         openSquare += 1
-        #         lastOpen = i
-        #     elif i == '{':
-        #         openBraket += 1
-        #         lastOpen = i
-        #     elif i == ')' and lastOpen == '(':
-        #         openRound -=1
-        #     elif i == ']' and lastOpen == '[':
-        #         openSquare -=1
-        #     elif i == '}' and lastOpen == '{':
-        #         openBraket -=1
-        #     else:
-        #         print('error')
-        #         break
-        # if openRound == 0 and openSquare == 0 and openBraket == 0:
-        #     print('ok')
+        stack = []
+        for p in s:
+            if p in ('(','[','{'):
+                stack.append(p)
+            elif p in m:
+                if stack and m[p] == stack[-1]:
+                    stack.pop()
+                else:
+                    print('ko')
+                    return
+        if len(stack) == 0:
+            print('ok')
+        else:
+            print('ko')
+        
+
+      
 
     isValid("()")
-    isValid("()[]{}")
-    isValid("(]")
+    isValid("()[{}")
+    isValid("")
