@@ -5,17 +5,21 @@ class Solution(object):
         :type target: int
         :rtype: int
         """
-        maxN = max(nums)
-        minN = min(nums)
-        if target > maxN:
-            print(str(len(nums)+1))
-        elif target < minN:
-            print(str(0))
-        else:
-            if nums[len(nums)//2] == target:
-                print(str(len(nums)//2))
-                
-
+        mn = 0
+        mx = len(nums) - 1
+        
+        while mn <= mx:
+            mid = (mn + mx) // 2
+            if nums[mid] == target:
+                mn = mid
+                break
+            elif target < nums[mid]:
+                mx = mid-1
+            elif target > nums[mid]:
+                mn = mid+1
+        
+        print('position: ', mn)
+            
     searchInsert([1,3,5,6], 5)
     searchInsert([1,3,5,6], 2)
-    searchInsert([1,3,5,6], 7)
+    searchInsert([1,3,4,5,6], 4)

@@ -20,7 +20,7 @@ class Solution(object):
                 else:
                     print('ko')
                     return
-        if len(stack) == 0:
+        if not stack:
             print('ok')
         else:
             print('ko')
